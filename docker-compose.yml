@@ -18,7 +18,7 @@ services:
     container_name: karaf-output
     volumes:
       - "/home/stranger/karaf-output/deploy:/deploy"
-      - "/home/stranger/karaf-output/output-files:/tmp-out"
+      - "/home/stranger/karaf-output/output-files:/tmp/out"
     ports:
       - 1100:1099
       - 8110:8101
