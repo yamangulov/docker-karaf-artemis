@@ -1,0 +1,33 @@
+### Intellij IDEA ###
+bin/
+target/
+outputDirectory/
+out/
+__MACOSX/
+.settings/
+logs/
+.idea
+!.idea/codeStyleSettings.xml
+*/*.iml
+*.iml
+*.log
+.DS_Store
+.DS_Store?
+
+target/
+
+
+
+### Eclipse ###
+
+.apt_generated
+
+.classpath
+
+.factorypath
+
+.project
+
+.settings
+
+.springBeans

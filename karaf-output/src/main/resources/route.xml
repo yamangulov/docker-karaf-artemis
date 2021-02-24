@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://localhost:61616"/>
+        <property name="user" value="user"/>
+        <property name="password" value="111111"/>
+    </bean>
+
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+        <route>
+            <from uri="jms:queue:input?connectionFactory=#amqConnectionFactory"/>
+            <to uri="file:/tmp/out"/>
+        </route>
+    </camelContext>
+
+</blueprint>
