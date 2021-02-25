@@ -22,7 +22,7 @@ public class App {
                 new RouteBuilder() {
                     @Override
                     public void configure() throws Exception {
-                        from("jms:queue:activemq/queue/FileTransferQueue").to("file:/tmp/out");
+                        from("jms:queue:FileTransferQueue").to("file:/tmp/out");
                     }
                 }
         );
