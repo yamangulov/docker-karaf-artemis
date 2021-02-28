@@ -1,29 +1,22 @@
-version: '3'
+version: '2.4'
 services:
   # karaf for separate input files' handling
-#  karaf-input:
-#    image: apache/karaf:latest
-#    container_name: karaf-input
-#    volumes:
-#    - "/home/stranger/karaf-input/deploy:/deploy"
-#    - "/home/stranger/karaf-input/input-files:/tmp/in"
-#    ports:
-#    - 1099:1099
-#    - 8181:8181
-#    - 8101:8101
-#    - 44444:44444
-  # karaf for separate output files' handling
-#  karaf-output:
-#    image: apache/karaf:latest
-#    container_name: karaf-output
-#    volumes:
-#      - "/home/stranger/karaf-output/deploy:/deploy"
-#      - "/home/stranger/karaf-output/output-files:/tmp/out"
-#    ports:
-#      - 1100:1099
-#      - 8110:8101
-#      - 8282:8181
-#      - 55555:44444
+  karaf:
+    image: apache/karaf:latest
+    container_name: karaf
+    volumes:
+    - "/home/stranger/karaf-input/deploy:/deploy"
+    - "/home/stranger/karaf-input/input-files:/tmp/in"
+    - "/home/stranger/karaf-output/output-files:/tmp/out"
+    ports:
+    - 1099:1099
+    - 8181:8181
+    - 8101:8101
+    - 44444:44444
+    depends_on:
+      artemis:
+        condition: service_healthy
+
   # activemq-artemis message broker
   artemis:
     image: vromero/activemq-artemis:latest-alpine
@@ -31,6 +24,11 @@ services:
     ports:
     - 8161:8161
     - 61616:61616
+    healthcheck:
+      test: "/var/lib/artemis/bin/artemis-service status"
+      interval: 2s
+      timeout: 60s
+      retries: 30
     environment:
       - ARTEMIS_USERNAME=user
       - ARTEMIS_PASSWORD=111111

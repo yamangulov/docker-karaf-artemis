@@ -1,4 +1,4 @@
-package ru.yamangulov.karafOutput;
+package ru.yamangulov.karafInput;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;
@@ -19,6 +19,14 @@ public class App {
         CamelContext ctx = new DefaultCamelContext();
         ConnectionFactory cf = new ActiveMQConnectionFactory("user", "111111", "tcp://0.0.0.0:61616");
         ctx.addComponent("acitvemq", ActiveMQComponent.jmsComponentAutoAcknowledge(cf));
+        ctx.addRoutes(
+                new RouteBuilder() {
+                    @Override
+                    public void configure() throws Exception {
+                        from("file:/tmp/in").to("acitvemq:queue:FileTransferQueue");
+                    }
+                }
+        );
         ctx.addRoutes(
                 new RouteBuilder() {
                     @Override
