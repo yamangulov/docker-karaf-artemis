@@ -40,7 +40,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Artemis client -->
         <!-- Необходим так как поток запускается через Blueprint -->
         <dependency>
             <groupId>org.apache.camel</groupId>
@@ -67,31 +66,6 @@
             <artifactId>activemq-camel</artifactId>
             <version>5.15.10</version>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>org.apache.camel</groupId>-->
-<!--            <artifactId>camel-http</artifactId>-->
-<!--            <version>2.24.2</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.apache.camel</groupId>-->
-<!--            <artifactId>camel-jsonpath</artifactId>-->
-<!--            <version>2.24.2</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.apache.camel</groupId>-->
-<!--            <artifactId>camel-xstream</artifactId>-->
-<!--            <version>2.24.2</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.ow2.asm</groupId>-->
-<!--            <artifactId>asm-all</artifactId>-->
-<!--            <version>5.2</version>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
 
         <!-- logging-->
         <dependency>

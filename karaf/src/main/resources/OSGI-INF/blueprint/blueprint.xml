@@ -3,12 +3,10 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
            xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.3.0"
-           xmlns:emp="http://employeeinfo.rusagro"
            xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0
 								https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
 								http://camel.apache.org/schema/blueprint
-								http://camel.apache.org/schema/blueprint/camel-blueprint.xsd
-                                http://camel.apache.org/schema/blueprint/cxf">
+								http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
 
     <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
         <property name="brokerURL" value="tcp://0.0.0.0:61616"/>
@@ -16,16 +14,16 @@
         <property name="password" value="111111"/>
     </bean>
 
-    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+    <camelContext id = "myContext" xmlns="http://camel.apache.org/schema/blueprint">
         <route>
-            <from URI="file:C:\temp\in" />
+            <from id="inputRoute" uri="file:C:\temp\in" />
             <log loggingLevel="INFO" message="here in route" />
-            <to URI="activemq:queue:FileTransferQueue" />
+            <to uri="activemq:queue:FileTransferQueue" />
         </route>
         <route>
-            <from URI="activemq:queue:FileTransferQueue" />
+            <from id="outputRoute" uri="activemq:queue:FileTransferQueue" />
             <log loggingLevel="INFO" message="here out route" />
-            <to URI="file:C:\temp\out" />
+            <to uri="file:C:\temp\out" />
         </route>
     </camelContext>
 
